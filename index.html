@@ -1,17 +1,374 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>RentGlobal — The World's Rentals, One Platform</title><lin[...] <nav><div class="logo" onclick="go('home')"><svg width="32" height="32" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="16" stroke="#C8A45A" stroke-width="1.5"/><path d="M6 22L11 13L17 18L22 10L28 22" stroke="#C8A45A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="17" r="2.5" fill="#C8A45A" opacity=".5"/></svg><span class="logo-t">RENT<span>GLOBAL</span></span></div
-    <select id="lang-select" onchange="handleLanguageChange(this)" style="background:#181818; border: 1px solid rgba(255,255,255,0.06); color: #C8A45A; font-size: 12px; padding: 5px 8px; border-radius: 8px; margin-right: 8px;">
-        <option value="en">English</option>
-        <option value="fr">French</option>
-        <option value="es">Spanish</option>
-        <option value="pt">Portuguese</option>
-        <option value="ar">Arabic</option>
-        <option value="de">German</option>
-    </select>
-    <script>
-      function handleLanguageChange(selectElement){
-        const toastMessage='Language changed to '+selectElement.options[selectElement.selectedIndex].text;
-        toast(toastMessage);
-      }
-    </script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>RentGlobal — The World's Rentals, One Platform</title><link rel="manifest" href="/manifest.json"/><meta name="theme-color" content="#C8A45A"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/><meta name="apple-mobile-web-app-title" content="RentGlobal"/><meta name="description" content="Global marketplace for car rentals and hotels across 120+ countries"/><link rel="apple-touch-icon" href="https://via.placeholder.com/180x180/C8A45A/000000?text=RG"/><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet"/><script src="https://js.stripe.com/v3/"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>:root{--g:#C8A45A;--g3:#8B6914;--d:#080808;--d2:#101010;--d3:#181818;--t:#EAE4D6;--m:#7A746A;--b:rgba(200,164,90,.2);--b2:rgba(255,255,255,.06);--r:12px;--green:#4CAF82;--red:#E05252;}*{margin:0;padding:0;box-sizing:border-box;}body{background:var(--d);color:var(--t);font-family:'Outfit',sans-serif;}button,input,select,textarea{font-family:'Outfit',sans-serif;}.pg{display:none;min-height:100vh;}.pg.on{display:block;}nav{position:fixed;top:0;left:0;right:0;z-index:300;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(8,8,8,.96);border-bottom:1px solid var(--b2);gap:8px;}.logo{display:flex;align-items:center;gap:9px;cursor:pointer;flex-shrink:0;}.logo-t{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;letter-spacing:2px;color:var(--g);}.logo-t span{color:var(--t);}.nb{background:none;border:none;color:var(--m);font-size:13px;padding:7px 10px;border-radius:8px;cursor:pointer;white-space:nowrap;}.nb.on{color:var(--g);background:rgba(200,164,90,.08);}.bgo{background:linear-gradient(135deg,var(--g),var(--g3));color:#000;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;border:none;cursor:pointer;white-space:nowrap;}.bg2{background:none;border:1px solid var(--b2);color:var(--t);padding:7px 14px;border-radius:8px;font-size:13px;cursor:pointer;white-space:nowrap;}.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:108px 20px 60px;text-align:center;background:radial-gradient(ellipse 90% 70% at 50% -5%,rgba(200,164,90,.13) 0%,transparent 65%),var(--d);}.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7vw,82px);font-weight:900;line-height:1.05;margin-bottom:18px;}.hero h1 em{color:var(--g);font-style:normal;display:block;}.hero p{font-size:16px;color:var(--m);max-width:500px;line-height:1.7;margin:0 auto 36px;}.sp{background:rgba(14,14,14,.93);border:1px solid var(--b);border-radius:18px;padding:24px;width:100%;max-width:860px;}.tt2{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:9px;border:1px solid var(--b2);background:transparent;color:var(--m);font-size:13px;cursor:pointer;margin:0 4px 8px 0;}.tt2.on{background:var(--g);color:#000;border-color:var(--g);}.sf{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}.sf label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);}.sf input{background:var(--d3);border:1px solid var(--b2);color:var(--t);padding:11px 12px;border-radius:var(--r);font-size:14px;outline:none;width:100%;}.g2c{display:grid;grid-template-columns:1fr 1fr;gap:10px;}.g3c{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}.sgo{background:linear-gradient(135deg,var(--g),var(--g3));color:#000;border:none;border-radius:var(--r);padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-top:4px;}.sbar{background:var(--d2);padding:22px 20px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;border-top:1px solid var(--b2);}.sn{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--g);}.sl{font-size:12px;color:var(--m);text-align:center;}.sec{padding:56px 20px;}.sh{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,42px);font-weight:700;text-align:center;margin-bottom:32px;}.sh span{color:var(--g);}.hgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}.hc{background:var(--d2);border:1px solid var(--b2);border-radius:16px;padding:24px;text-align:center;}.hn{width:46px;height:46px;background:rgba(200,164,90,.1);border:1px solid var(--b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--g);margin:0 auto 14px;}.ctab{margin:0 20px 56px;background:linear-gradient(135deg,rgba(200,164,90,.12),rgba(200,164,90,.04));border:1px solid var(--b);border-radius:22px;padding:36px 24px;text-align:center;}.lp{padding-top:68px;}.lhdr{padding:28px 20px 0;border-bottom:1px solid var(--b2);}.lhdr h1{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;}.lhdr h1 span{color:var(--g);}.fc{padding:6px 14px;border-radius:100px;border:1px solid var(--b2);background:transparent;color:var(--m);font-size:12px;cursor:pointer;margin:0 4px 8px 0;}.fc.on{border-color:var(--g);color:var(--g);background:rgba(200,164,90,.08);}.lgrid{padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;}.lc{background:var(--d3);border:1px solid var(--b2);border-radius:14px;overflow:hidden;}.lcimg{height:170px;display:flex;align-items:center;justify-content:center;font-size:68px;position:relative;}.lcbdg{position:absolute;top:9px;left:9px;background:linear-gradient(135deg,var(--g),var(--g3));color:#000;font-size:9px;font-weight:700;padding:3px 8px;border-radius:100px;}.lcbody{padding:14px 16px;}.lctitle{font-size:15px;font-weight:600;margin-bottom:2px;}.lcloc{font-size:12px;color:var(--m);margin-bottom:9px;}.lctags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:11px;}.lt{background:rgba(255,255,255,.05);border:1px solid var(--b2);padding:2px 7px;border-radius:5px;font-size:10px;color:var(--m);}.lcfoot{display:flex;align-items:center;justify-content:space-between;padding-top:11px;border-top:1px solid var(--b2);}.lpr{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--g);}.lbk{background:transparent;border:1px solid var(--g);color:var(--g);padding:6px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;}.bp{padding-top:68px;}.bwrap{max-width:700px;margin:0 auto;padding:32px 20px;}.bsteps{display:flex;align-items:center;margin-bottom:32px;}.bst{display:flex;align-items:center;gap:8px;flex:1;}.bsn{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:2px solid var(--b2);color:var(--m);background:var(--d3);flex-shrink:0;}.bst.on .bsn{border-color:var(--g);color:#000;background:var(--g);}.bst.done .bsn{border-color:var(--g);color:var(--g);}.bsl{font-size:11px;color:var(--m);}.bst.on .bsl{color:var(--t);}.bline{flex:1;height:1px;background:var(--b2);margin:0 8px;}.bline.done{background:var(--g);}.fp{background:var(--d2);border:1px solid var(--b2);border-radius:18px;padding:24px;margin-bottom:16px;}.fp h2{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:20px;}.fp h2 span{color:var(--g);}.ff{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}.ff label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g);}.ff input,.ff select,.ff textarea{background:var(--d3);border:1px solid var(--b2);color:var(--t);padding:11px 13px;border-radius:var(--r);font-size:14px;outline:none;resize:vertical;}.po{display:flex;align-items:center;gap:11px;background:var(--d3);border:2px solid var(--b2);border-radius:12px;padding:13px;cursor:pointer;margin-bottom:8px;}.po.on{border-color:var(--g);}.nb2{width:100%;background:linear-gradient(135deg,var(--g),var(--g3));color:#000;border:none;padding:13px;border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;}.nb2.gr{background:linear-gradient(135deg,#4CAF82,#2d7a58);color:#fff;}.nb2.rd{background:linear-gradient(135deg,#E05252,#a03030);color:#fff;}.succ{text-align:center;padding:56px 20px;display:none;}.succ.on{display:block;}.tw{position:fixed;bottom:22px;right:22px;z-index:999;display:flex;flex-direction:column;gap:7px;pointer-events:none;}.toast{background:var(--d2);border:1px solid var(--b);padding:12px 16px;border-radius:12px;font-size:13px;opacity:0;transition:opacity .4s;max-width:290px;pointer-events:none;}.toast.on{opacity:1;}.cfab{position:fixed;bottom:26px;right:26px;z-index:500;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g3));border:none;cursor:pointer;font-size:13px;font-weight:700;color:#000;box-shadow:0 8px 32px rgba(200,164,90,.45);}.cwin{position:fixed;bottom:90px;right:16px;z-index:499;width:320px;background:var(--d2);border:1px solid var(--b);border-radius:18px;display:none;flex-direction:column;overflow:hidden;max-height:440px;}.cwin.on{display:flex;}.chd{background:linear-gradient(135deg,#8B6914,#5a4008);padding:14px 16px;display:flex;align-items:center;gap:11px;}.cbody{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:160px;}.msg{display:flex;gap:7px;align-items:flex-end;max-width:88%;}.msg.bot{align-self:flex-start;}.msg.usr{align-self:flex-end;flex-direction:row-reverse;}.mb{padding:8px 12px;border-radius:14px;font-size:13px;line-height:1.5;}.msg.bot .mb{background:var(--d3);color:var(--t);}.msg.usr .mb{background:linear-gradient(135deg,var(--g),var(--g3));color:#000;font-weight:500;}.cirow{display:flex;gap:7px;padding:10px 12px;border-top:1px solid var(--b2);}.cinp{flex:1;background:var(--d3);border:1px solid var(--b2);color:var(--t);padding:8px 13px;border-radius:100px;font-size:13px;outline:none;}.csnd{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g3));border:none;color:#000;font-size:14px;cursor:pointer;}.ov{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}.ov.on{display:flex;}.modal{background:var(--d2);border:1px solid var(--b);border-radius:20px;padding:28px;width:100%;max-width:420px;position:relative;max-height:90vh;overflow-y:auto;}.mc{position:absolute;top:13px;right:16px;background:none;border:none;color:var(--m);font-size:22px;cursor:pointer;}.mbtn{width:100%;background:linear-gradient(135deg,var(--g),var(--g3));color:#000;border:none;padding:13px;border-radius:var(--r);font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;}.prof{padding-top:88px;max-width:600px;margin:0 auto;padding-left:20px;padding-right:20px;}.pcard{background:var(--d2);border:1px solid var(--b2);border-radius:18px;padding:28px;margin-bottom:16px;}.pav{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g3));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#000;margin:0 auto 14px;}.msgerr{color:var(--red);font-size:13px;margin-top:6px;min-height:18px;}.msgok{color:var(--green);font-size:13px;margin-top:6px;min-height:18px;}.adm-bk{background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;margin-bottom:12px;}.badge-paid{background:rgba(76,175,130,.2);color:var(--green);border:1px solid var(--green);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;}.badge-unpaid{background:rgba(200,164,90,.15);color:var(--g);border:1px solid var(--g);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;}.badge-pending{background:rgba(200,164,90,.15);color:var(--g);border:1px solid var(--g);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;}.badge-approved{background:rgba(76,175,130,.2);color:var(--green);border:1px solid var(--green);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;}.plisting-card{background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;margin-bottom:12px;}.emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:8px;}.emoji-btn{background:var(--d3);border:2px solid var(--b2);border-radius:8px;padding:10px;font-size:22px;cursor:pointer;text-align:center;}.emoji-btn.on{border-color:var(--g);}.langsel{background:var(--d3);border:1px solid var(--b2);color:var(--g);font-size:11px;padding:5px 8px;border-radius:8px;outline:none;cursor:pointer;}@media(max-width:600px){.g2c{grid-template-columns:1fr;}.g3c{grid-template-columns:1fr;}}</style></head><body>
+<nav><div class="logo" onclick="go('home')"><svg width="32" height="32" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="16" stroke="#C8A45A" stroke-width="1.5"/><path d="M6 22L11 13L17 18L22 10L28 22" stroke="#C8A45A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="17" r="2.5" fill="#C8A45A" opacity=".5"/></svg><span class="logo-t">RENT<span>GLOBAL</span></span></div><div style="display:flex;gap:2px;flex-wrap:nowrap"><button class="nb on" id="nl-home" onclick="go('home')">Home</button><button class="nb" id="nl-listings" onclick="go('listings')">Browse</button><button class="nb" id="nl-booking" onclick="go('booking')">Book</button><button class="nb" id="nl-partner" onclick="go('partner')" style="color:var(--g)">Partners</button></div><div style="display:flex;gap:6px;align-items:center;flex-shrink:0"><select class="langsel" onchange="changeLang(this.value)"><option value="en">🇺🇸 EN</option><option value="fr">🇫🇷 FR</option><option value="es">🇪🇸 ES</option><option value="pt">🇵🇹 PT</option><option value="ar">🇸🇦 AR</option><option value="de">🇩🇪 DE</option></select></div><div style="display:flex;gap:6px;align-items:center;flex-shrink:0" id="auth-btns"><button class="bg2" onclick="openAuth('login')">Sign In</button><button class="bgo" onclick="openAuth('signup')">Sign Up</button></div><div style="display:none;gap:6px;align-items:center;flex-shrink:0" id="user-wrap"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g3));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#000;cursor:pointer;flex-shrink:0" id="uav" onclick="go('profile')">?</div><span style="font-size:13px;color:var(--t);max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="uname"></span><button class="bg2" onclick="doSignOut()" style="font-size:11px;padding:5px 8px">Out</button></div></nav>
 <div class="tw" id="tw"></div>
- <div class="ov" id="auth-ov"><div class="modal"><button class="mc" onclick="closeOv('auth-ov')">x</button><div id="av-login"><div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-w[...]
+<div class="ov" id="auth-ov"><div class="modal"><button class="mc" onclick="closeOv('auth-ov')">x</button><div id="av-login"><div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:5px">Welcome <span style="color:var(--g)">Back</span></div><div style="font-size:13px;color:var(--m);margin-bottom:20px">Sign in to your RentGlobal account</div><div class="ff"><label>Email</label><input type="email" id="li-email" placeholder="you@example.com"/></div><div class="ff"><label>Password</label><input type="password" id="li-pass" placeholder="Your password"/></div><div class="msgerr" id="li-err"></div><button class="mbtn" id="li-btn" onclick="doLogin()">Sign In</button><div style="text-align:center;margin-top:10px;font-size:13px;color:var(--m)"><a style="color:var(--g);cursor:pointer" onclick="showForgot()">Forgot password?</a></div><div style="text-align:center;margin-top:14px;font-size:13px;color:var(--m)">No account? <a style="color:var(--g);cursor:pointer" onclick="switchAuth('signup')">Sign up free</a></div></div><div id="av-signup" style="display:none"><div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:5px">Join <span style="color:var(--g)">RentGlobal</span></div><div style="font-size:13px;color:var(--m);margin-bottom:20px">Create your free account today</div><div class="g2c"><div class="ff"><label>First Name</label><input type="text" id="su-fn" placeholder="John"/></div><div class="ff"><label>Last Name</label><input type="text" id="su-ln" placeholder="Smith"/></div></div><div class="ff"><label>Email</label><input type="email" id="su-em" placeholder="you@example.com"/></div><div class="ff"><label>Password</label><input type="password" id="su-pw" placeholder="Min 8 characters"/></div><div class="ff"><label>Confirm Password</label><input type="password" id="su-pw2" placeholder="Repeat password"/></div><div class="msgerr" id="su-err"></div><button class="mbtn" id="su-btn" onclick="doSignup()">Create Account</button><div style="text-align:center;margin-top:14px;font-size:13px;color:var(--m)">Have account? <a style="color:var(--g);cursor:pointer" onclick="switchAuth('login')">Sign in</a></div></div><div id="av-forgot" style="display:none"><div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;margin-bottom:5px">Reset <span style="color:var(--g)">Password</span></div><div style="font-size:13px;color:var(--m);margin-bottom:20px">We will send a reset link to your email</div><div class="ff"><label>Email</label><input type="email" id="fp-email" placeholder="you@example.com"/></div><div class="msgerr" id="fp-err"></div><div class="msgok" id="fp-ok"></div><button class="mbtn" onclick="doForgot()">Send Reset Link</button><div style="text-align:center;margin-top:14px;font-size:13px;color:var(--m)"><a style="color:var(--g);cursor:pointer" onclick="switchAuth('login')">Back to Sign In</a></div></div><div id="av-verify" style="display:none;text-align:center"><div style="font-size:48px;margin-bottom:16px">&#128231;</div><div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:10px">Check Your <span style="color:var(--g)">Email</span></div><div style="font-size:14px;color:var(--m);line-height:1.7;margin-bottom:20px">We sent a verification link to your email. Click it then sign in!</div><button class="mbtn" onclick="switchAuth('login')">Go to Sign In</button></div></div></div>
+<div class="pg on" id="pg-home"><section class="hero"><div style="display:inline-flex;align-items:center;gap:7px;background:rgba(200,164,90,.1);border:1px solid var(--b);padding:6px 16px;border-radius:100px;font-size:11px;font-weight:600;color:var(--g);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:26px">Global Rental Marketplace - 120+ Countries</div><h1>The World's Rentals,<em>One Platform.</em></h1><p>4,200+ verified car rental companies and hotels across 120 countries. Search, compare, and book in seconds.</p><div class="sp"><div style="margin-bottom:20px"><button class="tt2 on" onclick="setTTab(this)">Car Rental</button><button class="tt2" onclick="setTTab(this)">Hotel</button><button class="tt2" onclick="setTTab(this)">Car + Hotel</button><button class="tt2" onclick="setTTab(this)">Van / Bus</button></div><div class="sf"><label>Destination / Airport</label><input type="text" id="hloc" placeholder="Paris, Dubai, JFK..."/></div><div class="g2c" style="margin-bottom:12px"><div class="sf"><label>Pick-up Date</label><input type="date" id="hd1"/></div><div class="sf"><label>Return Date</label><input type="date" id="hd2"/></div></div><button class="sgo" onclick="heroSearch()">Search Rentals</button></div><div style="display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;justify-content:center"><span style="font-size:12px;color:var(--m)">120+ Countries</span><span style="font-size:12px;color:var(--m)">85K+ Vehicles</span><span style="font-size:12px;color:var(--m)">Free Cancellation</span><span style="font-size:12px;color:var(--m)">24/7 Support</span></div></section><div class="sbar"><div><div class="sn">120+</div><div class="sl">Countries</div></div><div><div class="sn">4,200+</div><div class="sl">Partners</div></div><div><div class="sn">85K+</div><div class="sl">Vehicles</div></div><div><div class="sn">3.2M+</div><div class="sl">Customers</div></div></div><div class="sec"><div class="sh">How <span>RentGlobal</span> Works</div><div class="hgrid"><div class="hc"><div class="hn">1</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Search</div><div style="font-size:13px;color:var(--m);line-height:1.7">Enter destination and dates to browse thousands of verified rentals.</div></div><div class="hc"><div class="hn">2</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Compare</div><div style="font-size:13px;color:var(--m);line-height:1.7">Filter by price, category and features. All companies side by side.</div></div><div class="hc"><div class="hn">3</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Book</div><div style="font-size:13px;color:var(--m);line-height:1.7">Secure your booking instantly with transparent pricing.</div></div><div class="hc"><div class="hn">4</div><div style="font-size:16px;font-weight:600;margin-bottom:8px">Enjoy</div><div style="font-size:13px;color:var(--m);line-height:1.7">Pick up your rental and earn RentPoints on every booking.</div></div></div></div><div class="ctab"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:10px">For Businesses</div><div style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,38px);font-weight:700;margin-bottom:10px">List Your Fleet or <span style="color:var(--g)">Property</span></div><div style="font-size:14px;color:var(--m);margin-bottom:20px">Join 4,200+ companies growing revenue on RentGlobal.</div><button class="bgo" style="padding:13px 28px;font-size:14px" onclick="go('partner')">Become a Partner</button></div></div>
+<div class="pg" id="pg-listings"><div class="lp"><div class="lhdr"><h1>Browse <span>Rentals</span></h1><p id="lsub" style="color:var(--m);font-size:13px;margin:4px 0 16px">Searching globally...</p><div style="padding-bottom:16px"><button class="fc on" data-f="all" onclick="applyF(this)">All</button><button class="fc" data-f="car" onclick="applyF(this)">Cars</button><button class="fc" data-f="hotel" onclick="applyF(this)">Hotels</button><button class="fc" data-f="ev" onclick="applyF(this)">Electric</button><button class="fc" data-f="luxury" onclick="applyF(this)">Luxury</button><button class="fc" data-f="value" onclick="applyF(this)">Best Value</button></div></div><div style="padding:8px 16px;border-bottom:1px solid var(--b2);display:flex;justify-content:space-between;align-items:center"><span id="rcnt" style="font-size:13px;color:var(--m)">Loading...</span><select onchange="sortL(this.value)" style="background:var(--d3);border:1px solid var(--b2);color:var(--t);padding:6px 10px;border-radius:7px;font-size:12px;outline:none"><option value="rec">Recommended</option><option value="low">Price Low to High</option><option value="high">Price High to Low</option><option value="rated">Top Rated</option></select></div><div class="lgrid" id="lgrid"></div></div></div>
+<div class="pg" id="pg-booking"><div class="bp"><div class="bwrap" id="bwrap"><div class="bsteps"><div class="bst on" id="bs1"><div class="bsn">1</div><div class="bsl">Details</div></div><div class="bline" id="bl1"></div><div class="bst" id="bs2"><div class="bsn">2</div><div class="bsl">Extras</div></div><div class="bline" id="bl2"></div><div class="bst" id="bs3"><div class="bsn">3</div><div class="bsl">Payment</div></div><div class="bline" id="bl3"></div><div class="bst" id="bs4"><div class="bsn">4</div><div class="bsl">Confirm</div></div></div><div class="fp" id="bfp"><div id="bf1"><h2>Your <span>Details</span></h2><div class="g2c"><div class="ff"><label>First Name</label><input type="text" id="b-fn" placeholder="John"/></div><div class="ff"><label>Last Name</label><input type="text" id="b-ln" placeholder="Smith"/></div></div><div class="ff"><label>Email</label><input type="email" id="b-em" placeholder="john@example.com"/></div><div class="ff"><label>Phone</label><input type="tel" id="b-ph" placeholder="+1 555 0000"/></div><button class="nb2" onclick="bStep(2)">Continue to Extras</button></div><div id="bf2" style="display:none"><h2>Extras and <span>Add-ons</span></h2><div class="po on" onclick="selProt(this)"><input type="radio" name="prot" checked/><div><div style="font-size:14px;font-weight:600">Full Protection</div><div style="font-size:12px;color:var(--m)">Zero excess and theft coverage</div></div><div style="margin-left:auto;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--g)">+$18/day</div></div><div class="po" onclick="selProt(this)"><input type="radio" name="prot"/><div><div style="font-size:14px;font-weight:600">Basic Coverage</div><div style="font-size:12px;color:var(--m)">Third party liability only</div></div><div style="margin-left:auto;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--g)">Free</div></div><div style="margin-top:16px"><label style="display:flex;align-items:center;gap:10px;background:var(--d3);border:1px solid var(--b2);border-radius:10px;padding:12px;cursor:pointer;margin-bottom:8px"><input type="checkbox" style="accent-color:var(--g)"/><span style="font-size:13px">GPS Navigation +$5/day</span></label><label style="display:flex;align-items:center;gap:10px;background:var(--d3);border:1px solid var(--b2);border-radius:10px;padding:12px;cursor:pointer"><input type="checkbox" checked style="accent-color:var(--g)"/><span style="font-size:13px">Airport Pickup +$15</span></label></div><button class="nb2" onclick="bStep(3)">Continue to Payment</button></div><div id="bf3" style="display:none"><h2><span>Payment</span> Details</h2><div class="ff"><label>Name on Card</label><input type="text" id="card-name" placeholder="John Smith"/></div><div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g);margin-bottom:8px">Card Details</div><div id="card-el" style="background:var(--d3);border:1px solid var(--b2);border-radius:12px;padding:13px;margin-bottom:8px"></div><div id="card-err" style="color:var(--red);font-size:12px;min-height:16px;margin-bottom:8px"></div><div style="background:rgba(200,164,90,.06);border:1px solid var(--b);border-radius:10px;padding:11px 13px;font-size:12px;color:var(--m);margin-bottom:14px">Secured by Stripe - 256-bit SSL encryption</div><button class="nb2" onclick="bStep(4)">Review and Confirm</button></div><div id="bf4" style="display:none"><h2>Review and <span>Confirm</span></h2><div style="background:var(--d3);border-radius:12px;padding:18px;margin-bottom:14px"><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);margin-bottom:12px">Booking Summary</div><div style="display:flex;justify-content:space-between;font-size:13px;color:var(--m);margin-bottom:8px"><span>Vehicle</span><strong style="color:var(--t)">Tesla Model S Plaid</strong></div><div style="display:flex;justify-content:space-between;font-size:13px;color:var(--m);margin-bottom:8px"><span>Duration</span><strong style="color:var(--t)">5 days</strong></div><div style="display:flex;justify-content:space-between;font-size:13px;color:var(--m);margin-bottom:8px"><span>Protection</span><strong style="color:var(--t)">Full Protection</strong></div><div style="height:1px;background:var(--b2);margin:11px 0"></div><div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700"><span>Total</span><span style="color:var(--g);font-family:'Cormorant Garamond',serif;font-size:20px">$615.00</span></div></div><button class="nb2 gr" onclick="payNow()" id="pay-btn">Confirm and Pay $615.00</button><div style="text-align:center;margin-top:10px;font-size:11px;color:var(--m)">Secured by Stripe - 256-bit SSL</div></div></div></div><div class="succ" id="bsucc"><div style="font-size:56px;margin-bottom:20px">&#10003;</div><div style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,50px);font-weight:900;margin-bottom:12px">Payment <span style="color:var(--g)">Successful!</span></div><p style="font-size:15px;color:var(--m);margin-bottom:24px">Your e-voucher has been sent to your email.</p><div class="bref" style="display:inline-block;background:var(--d2);border:1px solid var(--b);padding:10px 24px;border-radius:12px;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--g);letter-spacing:3px;margin-bottom:28px">RG-2026-00000</div><div style="display:flex;gap:11px;justify-content:center;flex-wrap:wrap"><button class="bgo" style="padding:12px 26px" onclick="go('listings')">Browse More</button><button class="bg2" style="padding:12px 26px" onclick="go('home')">Home</button></div></div></div></div>
+<div class="pg" id="pg-partner"><div style="padding-top:88px;max-width:800px;margin:0 auto;padding-left:20px;padding-right:20px;padding-bottom:60px"><div style="text-align:center;padding-bottom:40px"><div style="display:inline-flex;align-items:center;gap:7px;background:rgba(200,164,90,.1);border:1px solid var(--b);padding:6px 16px;border-radius:100px;font-size:11px;font-weight:600;color:var(--g);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px">For Business Partners</div><div style="font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,56px);font-weight:900;margin-bottom:14px">Grow Your Rental <span style="color:var(--g)">Business</span></div><p style="font-size:16px;color:var(--m);max-width:500px;margin:0 auto;line-height:1.7">Join thousands of companies reaching millions of customers on RentGlobal.</p></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px"><div style="background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--g)">3.2M+</div><div style="font-size:12px;color:var(--m)">Active Users</div></div><div style="background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--g)">120+</div><div style="font-size:12px;color:var(--m)">Countries</div></div><div style="background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--g)">$0</div><div style="font-size:12px;color:var(--m)">Setup Fee</div></div></div><div style="background:linear-gradient(135deg,rgba(200,164,90,.15),rgba(200,164,90,.05));border:2px solid var(--g);border-radius:22px;padding:36px;text-align:center;margin-bottom:32px"><div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:10px">Partner Plan</div><div style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:900;color:var(--t);line-height:1">$79</div><div style="font-size:14px;color:var(--m);margin-bottom:24px">per month - cancel anytime</div><div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;text-align:left;max-width:320px;margin-left:auto;margin-right:auto"><div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="color:var(--g);font-size:18px">&#10003;</span>Unlimited listings</div><div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="color:var(--g);font-size:18px">&#10003;</span>Real-time booking management</div><div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="color:var(--g);font-size:18px">&#10003;</span>Partner dashboard and analytics</div><div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="color:var(--g);font-size:18px">&#10003;</span>24/7 partner support</div><div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="color:var(--g);font-size:18px">&#10003;</span>Featured placement in search</div><div style="display:flex;align-items:center;gap:10px;font-size:14px"><span style="color:var(--g);font-size:18px">&#10003;</span>Access to 3.2M+ customers</div></div><button class="nb2" style="max-width:320px;font-size:16px" onclick="startPartnerSub()" id="partner-btn">Start Listing Your Fleet - $79/mo</button><div style="font-size:12px;color:var(--m);margin-top:12px">Secure payment via Stripe. Cancel anytime.</div></div><div id="partner-success" style="display:none;text-align:center;padding:40px;background:rgba(76,175,130,.1);border:1px solid var(--green);border-radius:18px;margin-bottom:32px"><div style="font-size:48px;margin-bottom:16px">&#127881;</div><div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:10px">Welcome to <span style="color:var(--g)">RentGlobal Partners!</span></div><p style="font-size:14px;color:var(--m);margin-bottom:20px">Your subscription is active! Now add your first listing below.</p><button class="nb2" style="max-width:300px" onclick="go('addlisting')">Add Your First Listing</button></div></div></div>
+<div class="pg" id="pg-addlisting"><div style="padding-top:88px;max-width:700px;margin:0 auto;padding-left:20px;padding-right:20px;padding-bottom:60px"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;margin-bottom:6px">Add Your <span style="color:var(--g)">Listing</span></div><p style="font-size:14px;color:var(--m);margin-bottom:28px">Fill in the details below and your listing will appear on RentGlobal after approval.</p><div class="fp"><h2>Listing <span>Details</span></h2><div class="ff"><label>Listing Title</label><input type="text" id="al-title" placeholder="e.g. Ferrari Roma, Beach Villa, Toyota Camry"/></div><div class="g2c"><div class="ff"><label>Type</label><select id="al-type"><option value="car">Car Rental</option><option value="hotel">Hotel / Villa</option></select></div><div class="ff"><label>Category</label><select id="al-cat"><option value="economy_car">Economy Car</option><option value="luxury_car">Luxury Car</option><option value="suv">SUV</option><option value="electric">Electric Car</option><option value="van">Van / Bus</option><option value="hotel_room">Hotel Room</option><option value="suite">Suite</option><option value="villa">Villa</option></select></div></div><div class="ff"><label>Choose an Emoji Icon</label><div class="emoji-grid" id="emoji-grid"><div class="emoji-btn on" onclick="selEmoji(this,'&#128663;')">&#128663;</div><div class="emoji-btn" onclick="selEmoji(this,'&#9889;')">&#9889;</div><div class="emoji-btn" onclick="selEmoji(this,'&#128665;')">&#128665;</div><div class="emoji-btn" onclick="selEmoji(this,'&#128664;')">&#128664;</div><div class="emoji-btn" onclick="selEmoji(this,'&#128652;')">&#128652;</div><div class="emoji-btn" onclick="selEmoji(this,'&#127953;')">&#127953;</div><div class="emoji-btn" onclick="selEmoji(this,'&#127968;')">&#127968;</div><div class="emoji-btn" onclick="selEmoji(this,'&#127966;')">&#127966;</div><div class="emoji-btn" onclick="selEmoji(this,'&#127958;')">&#127958;</div><div class="emoji-btn" onclick="selEmoji(this,'&#127956;')">&#127956;</div><div class="emoji-btn" onclick="selEmoji(this,'&#127965;')">&#127965;</div><div class="emoji-btn" onclick="selEmoji(this,'&#127774;')">&#127774;</div></div></div><div class="ff"><label>Location / Address</label><input type="text" id="al-loc" placeholder="e.g. Dubai International Airport, UAE"/></div><div class="g2c"><div class="ff"><label>City</label><input type="text" id="al-city" placeholder="Dubai"/></div><div class="ff"><label>Country</label><input type="text" id="al-country" placeholder="UAE"/></div></div><div class="g2c"><div class="ff"><label>Price Per Day / Night ($)</label><input type="number" id="al-price" placeholder="150" min="1"/></div><div class="ff"><label>Badge (optional)</label><input type="text" id="al-badge" placeholder="e.g. Premium, EV, Popular"/></div></div><div class="ff"><label>Tags (comma separated)</label><input type="text" id="al-tags" placeholder="Luxury, Auto, 5 seats"/></div><div class="ff"><label>Description</label><textarea id="al-desc" rows="4" placeholder="Describe your vehicle or property..."></textarea></div><div class="ff"><label>Your Company Name</label><input type="text" id="al-company" placeholder="Your rental company name"/></div><div class="ff"><label>Contact Email</label><input type="email" id="al-contact" placeholder="contact@yourcompany.com"/></div><div class="ff"><label>Contact Phone</label><input type="tel" id="al-phone" placeholder="+1 555 0000"/></div><div class="msgerr" id="al-err"></div><div class="msgok" id="al-ok"></div><button class="nb2" onclick="submitListing()" id="al-btn">Submit Listing for Approval</button><div style="font-size:12px;color:var(--m);margin-top:10px;text-align:center">Your listing will be reviewed and approved within 24 hours</div></div></div></div>
+<div class="pg" id="pg-admin"><div style="padding-top:88px;max-width:900px;margin:0 auto;padding-left:20px;padding-right:20px;padding-bottom:60px"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;margin-bottom:28px">Admin <span style="color:var(--g)">Dashboard</span></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:28px"><div style="background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--g)" id="adm-total-bk">0</div><div style="font-size:12px;color:var(--m)">Bookings</div></div><div style="background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--green)" id="adm-total-rev">$0</div><div style="font-size:12px;color:var(--m)">Revenue</div></div><div style="background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--g)" id="adm-my-cut">$0</div><div style="font-size:12px;color:var(--m)">Your 10%</div></div><div style="background:var(--d2);border:1px solid var(--b2);border-radius:14px;padding:20px;text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--m)" id="adm-pending-listings">0</div><div style="font-size:12px;color:var(--m)">Pending</div></div></div><div style="display:flex;gap:8px;margin-bottom:20px"><button class="nb2" style="width:auto;padding:8px 16px;font-size:13px;margin-top:0" onclick="admTab('bookings',this)" id="adm-tab-bookings">Bookings</button><button class="nb2" style="width:auto;padding:8px 16px;font-size:13px;margin-top:0;background:var(--d3);color:var(--t);border:1px solid var(--b2)" onclick="admTab('listings',this)" id="adm-tab-listings">Pending Listings</button></div><div id="adm-bookings-sec"><div id="adm-bookings"><div style="text-align:center;padding:40px;color:var(--m)">Loading...</div></div></div><div id="adm-listings-sec" style="display:none"><div id="adm-listings-content"><div style="text-align:center;padding:40px;color:var(--m)">Loading...</div></div></div></div></div>
+<div class="pg" id="pg-profile"><div class="prof"><div class="pcard" style="text-align:center"><div class="pav" id="pr-av">?</div><div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700" id="pr-name">Loading...</div><div style="font-size:13px;color:var(--m);margin-top:4px" id="pr-email"></div><div style="display:inline-block;background:rgba(200,164,90,.1);border:1px solid var(--b);padding:4px 14px;border-radius:100px;font-size:11px;color:var(--g);margin-top:10px">Gold Member</div></div><div class="pcard"><div style="font-size:14px;font-weight:600;margin-bottom:16px">Account Settings</div><div class="ff"><label>Full Name</label><input type="text" id="pr-fn" placeholder="Your name"/></div><div class="ff"><label>Phone</label><input type="tel" id="pr-ph" placeholder="+1 555 0000"/></div><div class="msgok" id="pr-ok"></div><button class="mbtn" onclick="updateProfile()">Save Changes</button></div><div class="pcard"><div style="font-size:14px;font-weight:600;margin-bottom:16px">Change Password</div><div class="ff"><label>New Password</label><input type="password" id="pr-pw" placeholder="Min 8 characters"/></div><div class="msgerr" id="pr-pw-err"></div><div class="msgok" id="pr-pw-ok"></div><button class="mbtn" onclick="updatePassword()">Update Password</button></div><div class="pcard" style="text-align:center"><button class="bg2" style="width:100%;padding:13px;color:var(--red);border-color:var(--red)" onclick="doSignOut()">Sign Out</button></div></div></div>
+<button class="cfab" id="cfab" onclick="toggleChat()">Chat</button>
+<div class="cwin" id="cwin"><div class="chd"><div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700">S</div><div style="margin-left:10px"><div style="font-size:14px;font-weight:700;color:#fff">RentGlobal Support</div><div style="font-size:11px;color:rgba(255,255,255,.7)">Sofia - Online</div></div><button onclick="toggleChat()" style="margin-left:auto;background:none;border:none;color:rgba(255,255,255,.6);font-size:18px;cursor:pointer">X</button></div><div class="cbody" id="cbody"></div><div class="cirow"><input class="cinp" id="cinp" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()"/><button class="csnd" onclick="sendChat()">Go</button></div></div>
+<script>
+var ADMIN_EMAIL='toussaintshelton6@gmail.com';
+var SB_URL='https://cowwlpiatpyiadrllkzr.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvd3dscGlhdHB5aWFkcmxsa3pyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2NzY1MTMsImV4cCI6MjA5MDI1MjUxM30.afIHLIsLDmjaVVfZrYhmqtSMMhXhcv4KTdZ0yYN9Eno';
+var LIVE_KEY='pk_live_51QacVCPXrTVBuNYIbb58kzPH4jMdwIfnGKGTjl4GivUJYkKXgaorM64jFkAALlGwIfZONaypgAq4vsPYaRTGOTty00923mzNFO';
+var sb=window.supabase.createClient(SB_URL,SB_KEY);
+var curUser=null,cf='all',sm='rec',cs=1,co=false,cc=0;
+var _str=null,_card=null,_els=null;
+var selEmojiVal='&#128663;';
+var localBookings=[];
+var dbListings=[];
+var langs={
+  en:{search:'Search Rentals',home:'Home',browse:'Browse',book:'Book',partners:'Partners',signin:'Sign In',signup:'Sign Up',tagline:'The World\'s Rentals, One Platform.',sub:'4,200+ verified car rental companies and hotels across 120 countries.'},
+  fr:{search:'Rechercher',home:'Accueil',browse:'Parcourir',book:'Réserver',partners:'Partenaires',signin:'Connexion',signup:'S\'inscrire',tagline:'Les Locations du Monde, Une Plateforme.',sub:'4 200+ sociétés de location vérifiées dans 120 pays.'},
+  es:{search:'Buscar',home:'Inicio',browse:'Explorar',book:'Reservar',partners:'Socios',signin:'Iniciar sesión',signup:'Registrarse',tagline:'Los Alquileres del Mundo, Una Plataforma.',sub:'4,200+ empresas de alquiler verificadas en 120 países.'},
+  pt:{search:'Pesquisar',home:'Início',browse:'Explorar',book:'Reservar',partners:'Parceiros',signin:'Entrar',signup:'Cadastrar',tagline:'Os Aluguéis do Mundo, Uma Plataforma.',sub:'4.200+ empresas verificadas em 120 países.'},
+  ar:{search:'بحث',home:'الرئيسية',browse:'تصفح',book:'احجز',partners:'الشركاء',signin:'تسجيل الدخول',signup:'إنشاء حساب',tagline:'إيجارات العالم، منصة واحدة.',sub:'+4,200 شركة تأجير موثقة في 120 دولة.'},
+  de:{search:'Suchen',home:'Startseite',browse:'Durchsuchen',book:'Buchen',partners:'Partner',signin:'Anmelden',signup:'Registrieren',tagline:'Mietwagen der Welt, Eine Plattform.',sub:'4.200+ geprüfte Mietwagenanbieter in 120 Ländern.'}
+};
+var curLang='en';
+function changeLang(l){
+  curLang=l;var t=langs[l];
+  var nb=document.querySelectorAll('.nb');
+  var keys=['home','listings','booking','partner'];var lkeys=['home','browse','book','partners'];
+  for(var i=0;i<nb.length;i++){if(nb[i].id==='nl-home')nb[i].textContent=t.home;if(nb[i].id==='nl-listings')nb[i].textContent=t.browse;if(nb[i].id==='nl-booking')nb[i].textContent=t.book;if(nb[i].id==='nl-partner')nb[i].textContent=t.partners;}
+  var ab=document.getElementById('auth-btns');if(ab){var btns=ab.querySelectorAll('button');if(btns[0])btns[0].textContent=t.signin;if(btns[1])btns[1].textContent=t.signup;}
+  var sgo=document.querySelector('.sgo');if(sgo)sgo.textContent=t.search;
+  toast(t.search=='Search Rentals'?'Language: English':'Language changed!');
+}
+var allL=[
+  {emoji:'&#127950;',bg:'#1a1a2e',badge:'Premium',name:'Ferrari Roma',loc:'Rome, Italy',tags:['Luxury','Auto'],price:280,unit:'day',stars:5,type:'luxury car'},
+  {emoji:'&#9889;',bg:'#0d1117',badge:'EV',name:'Tesla Model S Plaid',loc:'Dubai, UAE',tags:['Electric','Auto'],price:145,unit:'day',stars:5,type:'ev car'},
+  {emoji:'&#128665;',bg:'#141820',badge:'Popular',name:'Range Rover Vogue',loc:'London, UK',tags:['SUV','4WD'],price:195,unit:'day',stars:4.7,type:'car'},
+  {emoji:'&#127968;',bg:'#2c1810',badge:'5 Star',name:'Atlantis Ocean Suite',loc:'Dubai, UAE',tags:['Suite','Sea view'],price:620,unit:'night',stars:5,type:'hotel luxury'},
+  {emoji:'&#128663;',bg:'#0f1923',badge:'Best Value',name:'Toyota Camry',loc:'New York, USA',tags:['Sedan','Auto'],price:49,unit:'day',stars:4.5,type:'car value'},
+  {emoji:'&#127966;',bg:'#1a2e1a',badge:'Eco',name:'Bali Jungle Villa',loc:'Bali, Indonesia',tags:['Villa','Pool'],price:210,unit:'night',stars:5,type:'hotel'},
+  {emoji:'&#128652;',bg:'#1c1c1c',badge:null,name:'Mercedes Sprinter',loc:'Paris, France',tags:['Van','9 seats'],price:120,unit:'day',stars:4.3,type:'car'},
+  {emoji:'&#127958;',bg:'#0a1628',badge:'Luxury',name:'Santorini Suite',loc:'Santorini, Greece',tags:['Suite','Pool'],price:480,unit:'night',stars:5,type:'hotel luxury'},
+  {emoji:'&#128664;',bg:'#1a1a14',badge:null,name:'BMW 7 Series',loc:'Munich, Germany',tags:['Luxury','Auto'],price:180,unit:'day',stars:4.8,type:'luxury car'},
+  {emoji:'&#127953;',bg:'#1a2810',badge:'New',name:'Maldives Beach Villa',loc:'Maldives',tags:['Beach','Pool'],price:950,unit:'night',stars:5,type:'hotel luxury'}
+];
+function qs(s){return document.querySelector(s);}
+function qsa(s){return document.querySelectorAll(s);}
+function gi(id){return document.getElementById(id);}
+function st(n){var s='';for(var i=0;i<Math.floor(n);i++)s+='&#9733;';for(var i=Math.floor(n);i<5;i++)s+='&#9734;';return s;}
+function go(p){
+  var ps=qsa('.pg');for(var i=0;i<ps.length;i++)ps[i].classList.remove('on');
+  gi('pg-'+p).classList.add('on');
+  var ns=qsa('.nb');for(var i=0;i<ns.length;i++)ns[i].classList.remove('on');
+  var n=gi('nl-'+p);if(n)n.classList.add('on');
+  window.scrollTo(0,0);
+  if(p==='listings')renderL();
+  if(p==='booking'){resetBook();mountCard();}
+  if(p==='profile')loadProfile();
+  if(p==='admin')loadAdmin();
+  if(p==='addlisting'){if(!curUser){toast('Please sign in first');openAuth('login');return;}}
+}
+function toast(msg){
+  var w=gi('tw');var t=document.createElement('div');t.className='toast';t.innerHTML=msg;w.appendChild(t);
+  setTimeout(function(){t.classList.add('on');},20);
+  setTimeout(function(){t.classList.remove('on');setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},500);},3000);
+}
+function openAuth(v){switchAuth(v);gi('auth-ov').classList.add('on');}
+function closeOv(id){gi(id).classList.remove('on');}
+function switchAuth(v){gi('av-login').style.display=v==='login'?'block':'none';gi('av-signup').style.display=v==='signup'?'block':'none';gi('av-forgot').style.display=v==='forgot'?'block':'none';gi('av-verify').style.display=v==='verify'?'block':'none';}
+function showForgot(){switchAuth('forgot');}
+function setUserUI(user,name){
+  curUser=user;gi('auth-btns').style.display='none';gi('user-wrap').style.display='flex';
+  var init=name?name.charAt(0).toUpperCase():'U';
+  gi('uav').textContent=init;gi('uname').textContent=name?name.split(' ')[0]:'';
+  if(curUser&&curUser.email===ADMIN_EMAIL){
+    if(!gi('admin-nav-btn')){
+      var btn=document.createElement('button');btn.className='nb';btn.id='admin-nav-btn';
+      btn.style.color='var(--red)';btn.textContent='Admin';
+      btn.onclick=function(){go('admin');};
+      gi('user-wrap').parentNode.insertBefore(btn,gi('user-wrap'));
+    }
+  }
+}
+function clearUserUI(){curUser=null;gi('auth-btns').style.display='flex';gi('user-wrap').style.display='none';var ab=gi('admin-nav-btn');if(ab&&ab.parentNode)ab.parentNode.removeChild(ab);}
+function doLogin(){
+  var email=gi('li-email').value.replace(/^\s+|\s+$/g,'');
+  var pass=gi('li-pass').value;var err=gi('li-err');
+  if(!email||!pass){err.textContent='Please fill in all fields';return;}
+  var btn=gi('li-btn');btn.textContent='Signing in...';btn.disabled=true;err.textContent='';
+  sb.auth.signInWithPassword({email:email,password:pass}).then(function(r){
+    btn.textContent='Sign In';btn.disabled=false;
+    if(r.error){err.textContent=r.error.message;return;}
+    var name=r.data.user.user_metadata&&r.data.user.user_metadata.full_name?r.data.user.user_metadata.full_name:email;
+    setUserUI(r.data.user,name);closeOv('auth-ov');toast('Welcome back '+name.split(' ')[0]+'!');
+  }).catch(function(){btn.textContent='Sign In';btn.disabled=false;err.textContent='Login failed. Please try again.';});
+}
+function doSignup(){
+  var fname=gi('su-fn').value.replace(/^\s+|\s+$/g,'');
+  var lname=gi('su-ln').value.replace(/^\s+|\s+$/g,'');
+  var email=gi('su-em').value.replace(/^\s+|\s+$/g,'');
+  var pass=gi('su-pw').value;var pass2=gi('su-pw2').value;var err=gi('su-err');
+  if(!fname||!email||!pass){err.textContent='Please fill in all required fields';return;}
+  if(pass.length<8){err.textContent='Password must be at least 8 characters';return;}
+  if(pass!==pass2){err.textContent='Passwords do not match';return;}
+  var btn=gi('su-btn');btn.textContent='Creating account...';btn.disabled=true;err.textContent='';
+  sb.auth.signUp({email:email,password:pass,options:{data:{full_name:fname+' '+lname}}}).then(function(r){
+    btn.textContent='Create Account';btn.disabled=false;
+    if(r.error){err.textContent=r.error.message;return;}
+    switchAuth('verify');toast('Account created!');
+  }).catch(function(){btn.textContent='Create Account';btn.disabled=false;err.textContent='Signup failed. Please try again.';});
+}
+function doForgot(){
+  var email=gi('fp-email').value.replace(/^\s+|\s+$/g,'');
+  var err=gi('fp-err'),ok=gi('fp-ok');
+  if(!email){err.textContent='Enter your email';return;}
+  err.textContent='';ok.textContent='';
+  sb.auth.resetPasswordForEmail(email,{redirectTo:'https://myrentglobal.com'}).then(function(r){
+    if(r.error){err.textContent=r.error.message;return;}
+    ok.textContent='Reset link sent! Check your email.';
+  }).catch(function(){err.textContent='Failed to send reset email.';});
+}
+function doSignOut(){sb.auth.signOut().then(function(){clearUserUI();go('home');toast('Signed out successfully');}).catch(function(){clearUserUI();go('home');});}
+function loadProfile(){
+  if(!curUser){go('home');openAuth('login');return;}
+  var name=curUser.user_metadata&&curUser.user_metadata.full_name?curUser.user_metadata.full_name:'';
+  gi('pr-av').textContent=name?name.charAt(0).toUpperCase():(curUser.email||'?').charAt(0).toUpperCase();
+  gi('pr-name').textContent=name||curUser.email||'';
+  gi('pr-email').textContent=curUser.email||'';gi('pr-fn').value=name;
+}
+function updateProfile(){
+  var name=gi('pr-fn').value.replace(/^\s+|\s+$/g,'');
+  if(!name){toast('Enter your name');return;}
+  sb.auth.updateUser({data:{full_name:name}}).then(function(r){
+    if(r.error){toast('Update failed');return;}
+    curUser=r.data.user;gi('uav').textContent=name.charAt(0).toUpperCase();gi('uname').textContent=name.split(' ')[0];
+    gi('pr-av').textContent=name.charAt(0).toUpperCase();gi('pr-name').textContent=name;
+    gi('pr-ok').textContent='Profile updated!';setTimeout(function(){gi('pr-ok').textContent='';},3000);toast('Profile updated!');
+  });
+}
+function updatePassword(){
+  var pw=gi('pr-pw').value;var err=gi('pr-pw-err'),ok=gi('pr-pw-ok');
+  if(!pw||pw.length<8){err.textContent='Password must be at least 8 characters';return;}
+  err.textContent='';
+  sb.auth.updateUser({password:pw}).then(function(r){
+    if(r.error){err.textContent=r.error.message;return;}
+    ok.textContent='Password updated!';gi('pr-pw').value='';setTimeout(function(){ok.textContent='';},3000);
+  });
+}
+sb.auth.onAuthStateChange(function(event,session){
+  if(session&&session.user){var name=session.user.user_metadata&&session.user.user_metadata.full_name?session.user.user_metadata.full_name:session.user.email;setUserUI(session.user,name);}
+  else{clearUserUI();}
+});
+sb.auth.getSession().then(function(r){
+  if(r.data&&r.data.session&&r.data.session.user){var u=r.data.session.user;var name=u.user_metadata&&u.user_metadata.full_name?u.user_metadata.full_name:u.email;setUserUI(u,name);}
+});
+function setTTab(t){var tabs=qsa('.tt2');for(var i=0;i<tabs.length;i++)tabs[i].classList.remove('on');t.classList.add('on');}
+function heroSearch(){var loc=gi('hloc').value||'Worldwide';gi('lsub').textContent='Showing results for: '+loc;go('listings');}
+function renderL(){
+  var g=gi('lgrid');if(!g)return;
+  var combined=allL.slice();
+  for(var i=0;i<dbListings.length;i++){
+    var d=dbListings[i];
+    combined.push({emoji:d.emoji||'&#128663;',bg:'linear-gradient(135deg,#141414,#242424)',badge:d.badge||null,name:d.title,loc:d.location,tags:d.tags||[],price:parseFloat(d.price_per_day)||0,unit:d.type==='hotel'?'night':'day',stars:parseFloat(d.rating_avg)||5,type:d.type||'car'});
+  }
+  var data=[];
+  for(var i=0;i<combined.length;i++){
+    var d=combined[i];
+    if(cf!=='all'){if(cf==='car'&&d.type.indexOf('car')<0)continue;if(cf==='hotel'&&d.type.indexOf('hotel')<0)continue;if(cf==='ev'&&d.type.indexOf('ev')<0)continue;if(cf==='luxury'&&d.type.indexOf('luxury')<0)continue;if(cf==='value'&&d.price>80)continue;}
+    data.push(d);
+  }
+  if(sm==='low')data.sort(function(a,b){return a.price-b.price;});
+  else if(sm==='high')data.sort(function(a,b){return b.price-a.price;});
+  else if(sm==='rated')data.sort(function(a,b){return b.stars-a.stars;});
+  gi('rcnt').textContent=data.length+' results found';
+  if(!data.length){g.innerHTML='<div style="text-align:center;padding:48px;color:var(--m)">No listings found.</div>';return;}
+  var html='';
+  for(var i=0;i<data.length;i++){
+    var d=data[i];var th='';for(var j=0;j<d.tags.length;j++)th+='<span class="lt">'+d.tags[j]+'</span>';
+    var bh=d.badge?'<div class="lcbdg">'+d.badge+'</div>':'';
+    html+='<div class="lc"><div class="lcimg" style="background:'+d.bg+'"><span>'+d.emoji+'</span>'+bh+'</div>';
+    html+='<div class="lcbody"><div class="lctitle">'+d.name+'</div><div class="lcloc">'+d.loc+'</div>';
+    html+='<div class="lctags">'+th+'</div>';
+    html+='<div class="lcfoot"><div><div class="lpr">$'+d.price+'<small style="font-size:11px;color:var(--m);font-weight:400">/'+d.unit+'</small></div><div style="font-size:11px;color:var(--g)">'+st(d.stars)+'</div></div>';
+    html+='<button class="lbk" onclick="go(\'booking\')">Book Now</button></div></div></div>';
+  }
+  g.innerHTML=html;
+  loadDBListings();
+}
+function loadDBListings(){
+  sb.from('listings').select('*').eq('is_active',true).then(function(r){
+    if(r.data&&r.data.length){dbListings=r.data;renderL();}
+  }).catch(function(){});
+}
+function applyF(c){var cs2=qsa('.fc');for(var i=0;i<cs2.length;i++)cs2[i].classList.remove('on');c.classList.add('on');cf=c.getAttribute('data-f');renderL();}
+function sortL(v){sm=v;renderL();}
+function resetBook(){
+  cs=1;
+  for(var i=1;i<=4;i++){var f=gi('bf'+i);if(f)f.style.display=i===1?'block':'none';var s=gi('bs'+i);if(s){s.classList.remove('on','done');if(i===1)s.classList.add('on');}var l=gi('bl'+i);if(l)l.classList.remove('done');}
+  gi('bwrap').style.display='block';gi('bsucc').classList.remove('on');
+  if(curUser){var name=curUser.user_metadata&&curUser.user_metadata.full_name?curUser.user_metadata.full_name:'';var fn=gi('b-fn');if(fn)fn.value=name.split(' ')[0]||'';var em=gi('b-em');if(em)em.value=curUser.email||'';}
+}
+function bStep(to){
+  gi('bf'+cs).style.display='none';var sc=gi('bs'+cs);sc.classList.remove('on');sc.classList.add('done');var lc=gi('bl'+cs);if(lc)lc.classList.add('done');
+  cs=to;gi('bf'+to).style.display='block';gi('bs'+to).classList.add('on');window.scrollTo(0,0);toast('Step '+to+' of 4');
+  if(to===3)mountCard();
+}
+function selProt(p){var pos=qsa('.po');for(var i=0;i<pos.length;i++)pos[i].classList.remove('on');p.classList.add('on');}
+function mountCard(){
+  if(_card)return;
+  try{
+    _str=Stripe(LIVE_KEY);_els=_str.elements();
+    _card=_els.create('card',{style:{base:{color:'#EAE4D6',fontFamily:'Outfit,sans-serif',fontSize:'14px',iconColor:'#C8A45A','::placeholder':{color:'#4A4540'}},invalid:{color:'#E05252'}},hidePostalCode:true});
+    _card.mount('#card-el');
+    _card.on('change',function(e){var err=gi('card-err');if(err)err.textContent=e.error?e.error.message:'';});
+  }catch(e){}
+}
+function payNow(){
+  if(!_str||!_card){toast('Payment loading, please try again');return;}
+  var btn=gi('pay-btn');if(btn){btn.textContent='Processing...';btn.disabled=true;}
+  var nm=gi('card-name');var name=nm?nm.value||'Customer':'Customer';
+  var email=gi('b-em')?gi('b-em').value:'';
+  _str.createPaymentMethod({type:'card',card:_card,billing_details:{name:name,email:email}}).then(function(r){
+    if(r.error){var err=gi('card-err');if(err)err.textContent=r.error.message;if(btn){btn.textContent='Confirm and Pay $615.00';btn.disabled=false;}return;}
+    var ref='RG-'+new Date().getFullYear()+'-'+Math.floor(Math.random()*90000+10000);
+    var bk={ref:ref,name:name,email:email,amount:615,partner_amount:553.50,my_cut:61.50,date:new Date().toLocaleDateString(),paid:false};
+    localBookings.push(bk);
+    try{localStorage.setItem('rg_bookings',JSON.stringify(localBookings));}catch(e){}
+    if(curUser){sb.from('bookings').insert({customer_id:curUser.id,customer_name:name,customer_email:email,booking_ref:ref,pickup_date:new Date().toISOString().split('T')[0],return_date:new Date().toISOString().split('T')[0],base_price:615,subtotal:615,total_amount:615,status:'confirmed',payment_status:'paid'}).then(function(){});}
+    gi('bwrap').style.display='none';gi('bsucc').classList.add('on');
+    var br=qs('.bref');if(br)br.textContent=ref;
+    window.scrollTo(0,0);toast('Payment successful! Ref: '+ref);
+    if(btn){btn.textContent='Confirm and Pay $615.00';btn.disabled=false;}
+  }).catch(function(){if(btn){btn.textContent='Confirm and Pay $615.00';btn.disabled=false;}toast('Payment failed, please try again');});
+}
+function startPartnerSub(){
+  if(!curUser){toast('Please sign in first');openAuth('login');return;}
+  var btn=gi('partner-btn');if(btn){btn.textContent='Processing...';btn.disabled=true;}
+  setTimeout(function(){
+    gi('partner-success').style.display='block';
+    if(btn)btn.style.display='none';
+    sb.from('profiles').update({account_type:'partner'}).eq('id',curUser.id).then(function(){});
+    toast('Welcome to RentGlobal Partners!');
+  },1500);
+}
+function selEmoji(btn,emoji){
+  var btns=qsa('.emoji-btn');for(var i=0;i<btns.length;i++)btns[i].classList.remove('on');
+  btn.classList.add('on');selEmojiVal=emoji;
+}
+function submitListing(){
+  if(!curUser){toast('Please sign in first');openAuth('login');return;}
+  var title=gi('al-title').value.replace(/^\s+|\s+$/g,'');
+  var loc=gi('al-loc').value.replace(/^\s+|\s+$/g,'');
+  var price=gi('al-price').value;
+  var err=gi('al-err'),ok=gi('al-ok');
+  if(!title||!loc||!price){err.textContent='Please fill in title, location and price';return;}
+  var btn=gi('al-btn');btn.textContent='Submitting...';btn.disabled=true;err.textContent='';ok.textContent='';
+  var tags=gi('al-tags').value.split(',');
+  var cleanTags=[];for(var i=0;i<tags.length;i++){var t=tags[i].replace(/^\s+|\s+$/g,'');if(t)cleanTags.push(t);}
+  var payload={partner_id:curUser.id,title:title,category:gi('al-cat').value,type:gi('al-type').value,location:loc,city:gi('al-city').value,country:gi('al-country').value,price_per_day:parseFloat(price),emoji:selEmojiVal,badge:gi('al-badge').value||null,tags:cleanTags,description:gi('al-desc').value,is_active:false,rating_avg:5,rating_count:0};
+  sb.from('listings').insert(payload).then(function(r){
+    btn.textContent='Submit Listing for Approval';btn.disabled=false;
+    if(r.error){err.textContent='Error: '+r.error.message;return;}
+    ok.textContent='Listing submitted! We will review and approve within 24 hours.';
+    gi('al-title').value='';gi('al-loc').value='';gi('al-price').value='';gi('al-tags').value='';gi('al-desc').value='';gi('al-badge').value='';
+    toast('Listing submitted for approval!');
+  }).catch(function(){btn.textContent='Submit Listing for Approval';btn.disabled=false;err.textContent='Submission failed. Please try again.';});
+}
+function loadAdmin(){
+  if(!curUser||curUser.email!==ADMIN_EMAIL){gi('pg-admin').innerHTML='<div style="padding-top:120px;text-align:center;color:var(--red)"><div style="font-size:48px;margin-bottom:16px">&#128274;</div><div style="font-size:20px;font-weight:700">Access Denied</div></div>';return;}
+  try{var saved=localStorage.getItem('rg_bookings');if(saved)localBookings=JSON.parse(saved);}catch(e){}
+  sb.from('bookings').select('*').order('created_at',{ascending:false}).then(function(r){
+    var bookings=r.data||[];var allBk=[];
+    for(var i=0;i<bookings.length;i++){allBk.push({ref:bookings[i].booking_ref,name:bookings[i].customer_name,email:bookings[i].customer_email,amount:parseFloat(bookings[i].total_amount)||0,partner_amount:parseFloat(bookings[i].total_amount)*0.9,my_cut:parseFloat(bookings[i].total_amount)*0.1,date:bookings[i].created_at?bookings[i].created_at.split('T')[0]:'',paid:false});}
+    for(var j=0;j<localBookings.length;j++){var found=false;for(var k=0;k<allBk.length;k++){if(allBk[k].ref===localBookings[j].ref){found=true;break;}}if(!found)allBk.push(localBookings[j]);}
+    renderAdminBookings(allBk);
+    var totalRev=0,myCut=0;for(var i=0;i<allBk.length;i++){totalRev+=allBk[i].amount;myCut+=allBk[i].my_cut;}
+    gi('adm-total-bk').textContent=allBk.length;gi('adm-total-rev').textContent='$'+totalRev.toFixed(2);gi('adm-my-cut').textContent='$'+myCut.toFixed(2);
+  }).catch(function(){renderAdminBookings(localBookings);});
+  sb.from('listings').select('*').eq('is_active',false).then(function(r){
+    var pending=r.data||[];gi('adm-pending-listings').textContent=pending.length;renderAdminListings(pending);
+  }).catch(function(){});
+}
+function renderAdminBookings(bookings){
+  var c=gi('adm-bookings');
+  if(!bookings.length){c.innerHTML='<div style="text-align:center;padding:40px;color:var(--m)">No bookings yet!</div>';return;}
+  var html='';
+  for(var i=0;i<bookings.length;i++){
+    var b=bookings[i];var idx=i;
+    html+='<div class="adm-bk"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">';
+    html+='<div><div style="font-family:Cormorant Garamond,serif;font-size:18px;color:var(--g);font-weight:700">'+b.ref+'</div>';
+    html+='<div style="font-size:13px;color:var(--m);margin:4px 0">'+b.name+' · '+b.email+'</div>';
+    html+='<div style="font-size:12px;color:var(--m)">'+b.date+'</div></div>';
+    html+='<div style="text-align:right"><div style="font-family:Cormorant Garamond,serif;font-size:22px;font-weight:700">$'+b.amount+'</div>';
+    html+='<div style="color:var(--green);font-size:12px">Partner: $'+(b.partner_amount||b.amount*0.9).toFixed(2)+'</div>';
+    html+='<div style="color:var(--g);font-size:12px">Your cut: $'+(b.my_cut||b.amount*0.1).toFixed(2)+'</div></div></div>';
+    html+='<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">';
+    html+=b.paid?'<span class="badge-paid">&#10003; Paid</span>':'<span class="badge-unpaid">Unpaid</span>';
+    if(!b.paid)html+='<button class="nb2 gr" style="width:auto;padding:7px 14px;font-size:12px;margin-top:0" onclick="markPaid('+idx+',this)">Mark Paid</button>';
+    html+='<button class="nb2" style="width:auto;padding:7px 14px;font-size:12px;margin-top:0;background:var(--d3);color:var(--t);border:1px solid var(--b2)" onclick="emailPartner(\''+b.ref+'\',\''+b.name+'\',\''+b.date+'\')">Email Partner</button>';
+    html+='</div></div>';
+  }
+  c.innerHTML=html;
+}
+function renderAdminListings(listings){
+  var c=gi('adm-listings-content');
+  if(!listings.length){c.innerHTML='<div style="text-align:center;padding:40px;color:var(--m)">No pending listings.</div>';return;}
+  var html='';
+  for(var i=0;i<listings.length;i++){
+    var l=listings[i];
+    html+='<div class="plisting-card"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">';
+    html+='<div><div style="font-size:16px;font-weight:700;margin-bottom:4px">'+(l.emoji||'')+' '+l.title+'</div>';
+    html+='<div style="font-size:13px;color:var(--m);margin-bottom:4px">'+l.location+'</div>';
+    html+='<div style="font-size:13px;color:var(--g);font-weight:600">$'+l.price_per_day+'/'+(l.type==='hotel'?'night':'day')+'</div></div>';
+    html+='<span class="badge-pending">Pending</span></div>';
+    html+='<div style="margin-top:14px;font-size:13px;color:var(--m)">'+(l.description||'No description')+'</div>';
+    html+='<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">';
+    html+='<button class="nb2 gr" style="width:auto;padding:8px 18px;font-size:13px;margin-top:0" onclick="approveListing(\''+l.id+'\',this)">&#10003; Approve</button>';
+    html+='<button class="nb2 rd" style="width:auto;padding:8px 18px;font-size:13px;margin-top:0" onclick="rejectListing(\''+l.id+'\',this)">&#10007; Reject</button>';
+    html+='</div></div>';
+  }
+  c.innerHTML=html;
+}
+function admTab(tab,btn){
+  gi('adm-bookings-sec').style.display=tab==='bookings'?'block':'none';
+  gi('adm-listings-sec').style.display=tab==='listings'?'block':'none';
+  var btns=qsa('[id^="adm-tab-"]');
+  for(var i=0;i<btns.length;i++){btns[i].style.background='var(--d3)';btns[i].style.color='var(--t)';btns[i].style.border='1px solid var(--b2)';}
+  btn.style.background='linear-gradient(135deg,var(--g),var(--g3))';btn.style.color='#000';btn.style.border='none';
+}
+function approveListing(id,btn){
+  btn.textContent='Approving...';btn.disabled=true;
+  sb.from('listings').update({is_active:true}).eq('id',id).then(function(r){
+    if(r.error){toast('Error');btn.textContent='Approve';btn.disabled=false;return;}
+    btn.parentNode.parentNode.style.opacity='0.5';
+    gi('adm-pending-listings').textContent=Math.max(0,parseInt(gi('adm-pending-listings').textContent)-1);
+    toast('Listing approved and live!');loadDBListings();
+  }).catch(function(){toast('Error');btn.textContent='Approve';btn.disabled=false;});
+}
+function rejectListing(id,btn){
+  btn.textContent='Rejecting...';btn.disabled=true;
+  sb.from('listings').delete().eq('id',id).then(function(){
+    btn.parentNode.parentNode.style.opacity='0.5';toast('Listing rejected.');
+  }).catch(function(){toast('Error');btn.textContent='Reject';btn.disabled=false;});
+}
+function markPaid(idx,btn){
+  if(localBookings[idx])localBookings[idx].paid=true;
+  try{localStorage.setItem('rg_bookings',JSON.stringify(localBookings));}catch(e){}
+  var badge=btn.parentNode.querySelector('.badge-unpaid');
+  if(badge)badge.outerHTML='<span class="badge-paid">&#10003; Paid</span>';
+  btn.style.display='none';toast('Marked as paid!');
+}
+function emailPartner(ref,name,date){
+  var subject='RentGlobal Booking '+ref;
+  var body='Hi,\n\nNew booking!\n\nRef: '+ref+'\nCustomer: '+name+'\nDate: '+date+'\n\nThank you,\nShelton\nmyrentglobal.com';
+  window.location.href='mailto:?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+}
+var bots={'track':'Share your booking ref and I will check it!','cancel':'Free cancellation up to 48h before pickup!','payment':'Happy to help with payments!','book':'Tap Book Now on any listing!'};
+var im=[{r:'bot',t:'Hi! I am Sofia from RentGlobal Support. How can I help?'},{r:'bot',t:'Ask about bookings, cancellations or payments!'}];
+function initChat(){var b=gi('cbody');b.innerHTML='';for(var i=0;i<im.length;i++){(function(m,d){setTimeout(function(){addMsg(m.r,m.t);},d);})(im[i],i*800);}}
+function toggleChat(){co=!co;gi('cwin').classList.toggle('on',co);if(co&&cc===0)initChat();}
+function addMsg(r,t){var b=gi('cbody');var d=document.createElement('div');d.className='msg '+r;d.innerHTML='<div><div class="mb">'+t+'</div></div>';b.appendChild(d);b.scrollTop=b.scrollHeight;cc++;}
+function getBotReply(m){var l=m.toLowerCase();var k=Object.keys(bots);for(var i=0;i<k.length;i++)if(l.indexOf(k[i])>=0)return bots[k[i]];return 'Thanks! Can you share more detail?';}
+function sendChat(){var i=gi('cinp');var t=i.value.replace(/^\s+|\s+$/g,'');if(!t)return;i.value='';addMsg('usr',t);setTimeout(function(){addMsg('bot',getBotReply(t));},1000);}
+try{var d1=new Date();d1.setDate(d1.getDate()+1);var d2=new Date();d2.setDate(d2.getDate()+7);gi('hd1').valueAsDate=d1;gi('hd2').valueAsDate=d2;}catch(e){}
+</script></body></html>
