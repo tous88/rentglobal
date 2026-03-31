@@ -1,0 +1,22 @@
+{
+  "name": "RentGlobal",
+  "short_name": "RentGlobal",
+  "description": "The World's Rentals, One Platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#C8A45A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/C8A45A/000000?text=RG",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/C8A45A/000000?text=RG",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
